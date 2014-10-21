@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>AngularJS Presentation</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1><img class="ng-img" src="images/AngularJS-large.png" alt=""></h1>
+                    <h3>HTML enhanced for web apps!</h3>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What is AngularJS?</h2>
+                        <p class="fragment">
+                            AngularJS是用來開發Web應用程式的框架，它能讓HTML成為描述你的應用程式的模板語言，並且可以和資料來源綁定，讓Web應用程式開發更容易。
+                        </p>
+                    
+                    </section>
+                </section>
+
+                <!-- Example of nested vertical slides -->
+                <section>
+                    <section>
+                        <h2>AngularJS STRUCTURE</h2>
+                        <img class="default-img" src="images/modules.jpg" alt="Down arrow">
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What are Factories / services?</h2>
+                        <img class="fragment default-img" src="images/factories.png" alt="">
+                        <p class="fragment">使用在和contoller share data.</p>
+                        <img src="images/angular-js-service-diagram.png" alt="" class="fragment default-img">
+                    </section>
+                    <section>
+                        <h2>What are Controllers?</h2>
+                        <img  class="fragment default-img" src="images/controller.png" alt="">
+                        <p class="fragment">檢視從 Factories/ Services的資料, 並且存放著, 提供給不同的views 使用.</p>
+                        <p class="fragment">制定一些view 的事件</p>
+                        <p class="fragment">知道如何處理自定義的邏輯</p>
+                    </section>
+                    <section>
+                        <h2>What are Views?</h2>
+                        <img  class="fragment default-img" src="images/view.png" alt="">
+                        <p class="fragment">Views 包含了html.</p>
+                        <img src="images/view_and_controller.png" alt="" class="fragment default-img">
+                        <p class="fragment">$scpoe 是controller 跟 view 的"黏著劑"</p>
+                        <p class="fragment">綁定controller 提供的資料經由透過$scpoe 物件.</p>
+                    </section>
+                    <section>
+                        <h2>What are Routes?</h2>
+                        <img  class="fragment default-img" src="images/routes.png" alt="">
+                        <p class="fragment">每一個route 都有個特別的path.</p>
+                        <p class="fragment">它參考 contoller 和 view.</p>
+                        <p class="fragment">它包含了 route參數. (例如: /myapp/#somepage) </p>
+                        <img src="images/angularjs-routing-view-controller.png" alt="" class="fragment default-img">
+                        <!-- <img src="images/routing.png" alt="" class="fragment default-img"> -->
+                    </section>
+                    
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>start Some simple code.</h2>
+                        <p class="fragment">還記得這張圖嗎?</p>
+                        <img class="fragment default-img" src="images/modules.jpg" alt="Down arrow">
+                        <p class="fragment">Oh, ok....</p>
+                    </section>
+
+                    <section>
+                        <img src="images/module.png" alt="" class="fragment default-img">
+                        <p class="fragment">開始編輯 app.js</p>
+                        <pre class="fragment"><code data-trim contenteditable>
+var demoApp = angular.module('demoApp', ['ngRoute']);
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <img src="images/routes.png" alt="" class="fragment default-img">
+                        <pre class="fragment"><code data-trim contenteditable>
+demoApp.config(function ($routeProvider) {
+    $routeProvider
+        .when('/customers',
+            {
+                controller: 'terryController',
+                templateUrl: './app/template/customers.html'
+            })
+        .when(...)
+        .otherwise({ redirectTo: '/customers' });
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <img src="images/factories.png" alt="" class="fragment default-img">
+                        <pre class="fragment"><code data-trim contenteditable>
+demoApp.factory('terryCustomersService', function () {
+    var customers = [
+        ...
+    ];
+    return {
+        all: function () {
+            return customers;
+        }
+    }
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <img src="images/controller.png" alt="" class="fragment default-img">
+                        <pre class="fragment"><code data-trim contenteditable>
+demoApp.controller('terryController', function ($scope, terryCustomersService) {
+    $scope.customers = terryCustomersService.all();
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <img src="images/view.png" alt="" class="fragment default-img">
+                        <pre class="fragment"><code data-trim contenteditable>
+<ul>
+    <h2>my customers:</h2>
+    <li ng-repeat="person in customers">{{person.name}}</li>
+</ul>
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>THE END</h1>
+                    <h3 class="fragment">Any question?</h3>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+        <script src="//localhost:34567/livereload.js"></script>
+    </body>
+</html>

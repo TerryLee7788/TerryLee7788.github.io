@@ -1,0 +1,21 @@
+.present .node_img, .present .npm_img, .present .ng-img {
+  width: 150px;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent; }
+.present .npm_img {
+  position: relative;
+  top: 22px; }
+.present .ng-img {
+  width: 450px; }
+.present .default-img {
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent; }
+
+.grunt-code {
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center; }
