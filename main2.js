@@ -89,22 +89,18 @@ function initialiseState (registration) {
     content.style.opacity = 1;
 
   }).catch(function (err) {
-    // if (Notification.permission === 'default') { return unRegSW(); }
     console.log(err);
     var err_msg = err.message;
-    // unRegSW(true);
     if ( err_msg.indexOf('permission') != -1 ) {
       unRegSW();
     } else {
       regSW();
     }
-    // regSW();
   })
 
 }
 
-function unRegSW (checked) {
-  var checked = checked || false;
+function unRegSW () {
   navigator.serviceWorker.getRegistration(sw).then(function (r) {
     // stop = false
     console.log('unRegSW');
