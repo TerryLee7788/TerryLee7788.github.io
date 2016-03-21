@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test web worker</title>
+  <link rel="manifest" href="./manifest">
+  <!-- <link rel="manifest" href="./manifest.json"> -->
+  <style>
+    body, main, code { box-sizing: border-box; }
+    body {
+        font-family: Roboto,Helvetica,Arial,sans-serif;
+        font-weight: 300;
+        min-height: 100%
+    }
+    code {
+      display: block;
+      padding: 16px;
+      width: 100%;
+      word-break: break-all;
+      background: #eee;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    main, p {
+      margin: 30px 0;
+    }
+    main {
+      max-width: 480px;
+      min-width: 64px;
+      width: 100%;
+      padding: 32px;
+      margin: 0 auto;
+    }
+    p {
+      font-size: 14px;
+    }
+    .center {
+      text-align: center;
+    }
+    .content {
+      opacity: 0;
+    }
+    #btn {
+      padding: 4px 10px;
+    }
+    header {
+      margin-top: 32px;
+    }
+    /* notify_denied layout */
+    #notify_denied {
+      width: 300px;
+      background: blue;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 3px;
+      position: absolute;
+      top: 11px;
+      left: 108px;
+      line-height: 1.4;
+    }
+    #notify_denied:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      position: absolute;
+      top: -20px;
+      border-bottom-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="btn center">
+      <button id="btn" data-tmp="關閉通知">開啟通知</button>
+    </div>
+  </header>
+  <main>
+
+    <div class="content">
+
+      <div class="btn center">
+        <button class="js-push-button" id="pushStatus" disabled>
+          Send a Push to GCM via XHR
+        </button>
+      </div>
+
+      <p class="center">OR</p>
+
+      <p>
+        Copy and paste the following CURL command into your terminal to send a push message to your browser.
+      </p>
+      <code id="curl"></code>
+    </div>
+
+  </main>
+
+  <script src="./main2.js"></script>
+</body>
+</html>
