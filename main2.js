@@ -107,9 +107,9 @@ function unRegSW () {
     console.log(r);
     if (r) {
       r.unregister().then(function (boolean) {
-        console.log(boolean);
+        var disable_reg = /^(default|denied)$/g;
         if (boolean) {
-          if (Notification.permission === 'default') { return ; }
+          if (disable_reg.test(Notification.permission)) { return ; }
           btnText(r);
           content.style.opacity = 0;
         }
