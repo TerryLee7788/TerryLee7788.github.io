@@ -2,7 +2,7 @@ var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1,
     btn = document.getElementById('btn'),
     content = document.querySelector('.content'),
     // sw = './js/service_worker2.js';
-    sw = 'http://localhost:8978/test_web_worker/js/service_worker2.js';
+    sw = 'https://terrylee7788.github.io/service_worker2.js';
 
 function btnText (r) {
   // console.log(r);
