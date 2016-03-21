@@ -1,8 +1,9 @@
 var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1,
     btn = document.getElementById('btn'),
     content = document.querySelector('.content'),
-    // sw = './js/service_worker2.js';
-    sw = 'https://terrylee7788.github.io/service_worker2.js';
+    scope = { scope: './' },
+    sw = 'service_worker2.js';
+    // sw = 'https://terrylee7788.github.io/service_worker2.js';
 
 function btnText (r) {
   // console.log(r);
@@ -122,7 +123,7 @@ function unRegSW (checked) {
 function regSW () {
   // if (Notification.permission === 'default') { return unRegSW(); }
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(sw)
+    navigator.serviceWorker.register(sw, scope)
       .then(initialiseState);
   }
 }
