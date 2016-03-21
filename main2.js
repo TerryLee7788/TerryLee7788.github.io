@@ -158,7 +158,7 @@ function checkSubScribeStatus () {
   });
 }
 
-// checkSubScribeStatus();
+checkSubScribeStatus();
 
 btn.addEventListener('click', function () {
   if (Notification.permission === 'denied') {
