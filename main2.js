@@ -91,7 +91,13 @@ function initialiseState (registration) {
   }).catch(function (err) {
     // if (Notification.permission === 'default') { return unRegSW(); }
     console.log(err);
-    unRegSW(true);
+    var err_msg = err.message;
+    // unRegSW(true);
+    if ( err_msg.indexOf('permission') != -1 ) {
+      unRegSW();
+    } else {
+      regSW();
+    }
     // regSW();
   })
 
@@ -107,8 +113,6 @@ function unRegSW (checked) {
       r.unregister().then(function (boolean) {
         console.log(boolean);
         if (boolean) {
-          if (checked) { return ; }
-          if (Notification.permission === 'default') { return ; }
           btnText(r);
           content.style.opacity = 0;
         }
