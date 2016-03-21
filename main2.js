@@ -90,7 +90,7 @@ function initialiseState (registration) {
   }).catch(function (err) {
     // if (Notification.permission === 'default') { return unRegSW(); }
     console.log(err);
-    // unRegSW(true);
+    unRegSW(true);
     // regSW();
   })
 
