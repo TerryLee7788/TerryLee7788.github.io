@@ -113,6 +113,7 @@ function unRegSW (checked) {
       r.unregister().then(function (boolean) {
         console.log(boolean);
         if (boolean) {
+          if (Notification.permission === 'default') { return ; }
           btnText(r);
           content.style.opacity = 0;
         }
