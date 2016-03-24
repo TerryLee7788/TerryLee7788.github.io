@@ -124,7 +124,8 @@ function unRegSW () {
 function regSW () {
   // if (Notification.permission === 'default') { return unRegSW(); }
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(sw, scope)
+    // navigator.serviceWorker.register(sw, scope)
+    navigator.serviceWorker.register(sw)
       .then(initialiseState);
   }
 }
