@@ -1,9 +1,15 @@
 var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1,
     btn = document.getElementById('btn'),
     content = document.querySelector('.content'),
-    // scope = { scope: './' },
+    send_msg = document.querySelector('#send_msg'),
+    logs = document.querySelector('#logs'),
+    scope = { scope: '/' },
     // sw = 'service_worker2.js';
     sw = 'https://terrylee7788.github.io/service_worker2.js';
+
+function postMessage () {
+  console.log('hi');
+}
 
 function btnText (r) {
   // console.log(r);
@@ -63,6 +69,14 @@ function initialiseState (registration) {
     return registration.pushManager.subscribe({ userVisibleOnly: true });
   }).then(function (subscription) {
     console.log('***** success reg!!!');
+    console.log(navigator.serviceWorker.controller);
+
+    setTimeout(function () {
+      
+      // if (!navigator.serviceWorker.controller) { regSW() }
+      if (!navigator.serviceWorker.controller) { console.clear(); }
+    }, 1000);
+
     navigator.serviceWorker.getRegistration(sw).then(btnText);
     // console.log(subscription);
     // console.log(is_chrome);
@@ -89,27 +103,34 @@ function initialiseState (registration) {
     content.style.opacity = 1;
 
   }).catch(function (err) {
-    console.log(err);
+    // if (Notification.permission === 'default') { return unRegSW(); }
+    // console.log('gggg');
+    // console.log(err.toString());
+    // for (var i in err) {
+    //   console.log('1: %o, 2: %o', i, err[i]);
+    // }
     var err_msg = err.message;
+    console.log(err_msg);
     if ( err_msg.indexOf('permission') != -1 ) {
       unRegSW();
     } else {
       regSW();
     }
+    // regSW();
   })
 
 }
 
-function unRegSW () {
+function unRegSW (checked) {
+  var checked = checked || false;
   navigator.serviceWorker.getRegistration(sw).then(function (r) {
     // stop = false
     console.log('unRegSW');
     console.log(r);
     if (r) {
       r.unregister().then(function (boolean) {
-        var disable_reg = /^(default|denied)$/g;
         if (boolean) {
-          if (disable_reg.test(Notification.permission)) { return ; }
+          if (Notification.permission === 'default') { return ; }
           btnText(r);
           content.style.opacity = 0;
         }
@@ -118,6 +139,7 @@ function unRegSW () {
   }).catch(function (err) {
     console.log('unRegSW failed...');
     console.log(err);
+    logMsg(err);
   });
 }
 
@@ -143,6 +165,7 @@ function checkSubScribe () {
     }
   }).catch(function (err) {
     console.log(err);
+    logMsg(err);
   });
 }
 
@@ -157,15 +180,79 @@ function checkSubScribeStatus () {
     }
   }).catch(function (err) {
     console.log(err);
+    logMsg(err);
   });
 }
 
-checkSubScribeStatus();
-
-btn.addEventListener('click', function () {
-  if (Notification.permission === 'denied') {
-    deniedMsg();
-    return ;
+function sendMessage(message) {
+  navigator.serviceWorker.getRegistration(sw).then(function (r) {
+    console.log(r);
+  })
+  // This wraps the message posting/response in a promise, which will
+  // resolve if the response doesn't contain an error, and reject with
+  // the error if it does. If you'd prefer, it's possible to call
+  // controller.postMessage() and set up the onmessage handler
+  // independently of a promise, but this is a convenient wrapper.
+  /*
+  if (navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      message: 'test terry!!!'
+    })
+  } else {
+    console.log('gg');
   }
-  checkSubScribe();
-});
+  */
+  return new Promise(function(resolve, reject) {
+     var messageChannel = new MessageChannel();
+     messageChannel.port1.onmessage = function(event) {
+       if (event.data.error) {
+         reject(event.data.error);
+       } else {
+         resolve(event.data);
+       }
+     };
+
+     // This sends the message data as well as transferring messageChannel.port2 to the service worker.
+     // The service worker can then use the transferred port to reply via postMessage(), which
+     // will in turn trigger the onmessage handler on messageChannel.port1.
+     // See https://html.spec.whatwg.org/multipage/workers.html#dom-worker-postmessage
+     // Was an issue with using controller vs active registration but i can't repro anymore
+     // registration.active.postMessage(message, [messageChannel.port2]);
+     try  {
+       navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
+     } catch (err) {
+       console.log(err);
+       logMsg(err);
+     }
+
+     /*
+      * navigator.serviceWorker.controller return null... but not resolved...
+      * http://www.resolvinghere.com/sof/30256390.shtml
+      * https://www.w3.org/TR/2015/WD-service-workers-20150205/
+      * https://github.com/slightlyoff/ServiceWorker/issues/
+      */
+  })
+}
+
+function logMsg (message) {
+  logs.innerHTML += '<p>' + message + '</p>';
+}
+
+window.addEventListener('load', function () {
+  console.log('done!!');
+  checkSubScribeStatus();
+
+  btn.addEventListener('click', function () {
+    if (Notification.permission === 'denied') {
+      deniedMsg();
+      return ;
+    }
+    checkSubScribe();
+  });
+
+  send_msg.addEventListener('click', function () {
+    var value = document.querySelector('#my_message').value;
+    console.log(value);
+    sendMessage(value);
+  });
+})

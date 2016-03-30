@@ -8,9 +8,7 @@ var json = {
 function myShowNotification (obj) {
   console.log(obj);
   var data = obj;
-  self.registration.showNotification(data.title, {
-    body: data.body
-  })
+  self.registration.showNotification(data.title, data)
 }
 
 self.addEventListener('push', function(event) {
@@ -24,12 +22,29 @@ self.addEventListener('push', function(event) {
   // }
   // why is this event?
   event.waitUntil(
-    myShowNotification(json)
+    fetch('http://localhost:8978/test_web_worker/serviceworker_self_methods.jpg').then(function (res) {
+      console.log(res);
+      var icon = res.url;
+      json.icon = icon;
+      myShowNotification(json)
+    }).catch(function (err) {
+      console.log(err);
+    })
   );
 
   self.registration.pushManager.getSubscription().then(function(subscription) {
     console.log(subscription);
   });
+
+  /*
+  try {
+    localStorage.setItem('gg', 'hi');
+  } catch (err) {
+    console.log(err);
+  }
+  */
+
+
 
 });
 
@@ -39,6 +54,11 @@ self.addEventListener('registration', function(event) {
 
 self.addEventListener('message', function (e) {
   console.log(e);
+  var data = e.data;
+  if (data) {
+    json.body = data;
+  }
+  console.log(json);
 });
 
 self.addEventListener('install', function(event) {

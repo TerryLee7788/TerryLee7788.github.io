@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>test service worker</title>
-  <link rel="manifest" href="./manifest.json">
+  <title>test web worker</title>
+  <link rel="manifest" href="./manifest">
   <!-- <link rel="manifest" href="./manifest.json"> -->
   <style>
     body, main, code { box-sizing: border-box; }
@@ -76,9 +76,19 @@
       <button id="btn" data-tmp="關閉通知">開啟通知</button>
     </div>
   </header>
+
   <main>
 
     <div class="content">
+
+      <div class="center">
+        <h4>Customize the message</h4>
+        <input name="my_message" id="my_message" />
+      </div>
+
+      <p class="center">
+        <button id="send_msg">Customize message!</button>
+      </p>
 
       <div class="btn center">
         <button class="js-push-button" id="pushStatus" disabled>
@@ -92,8 +102,8 @@
         Copy and paste the following CURL command into your terminal to send a push message to your browser.
       </p>
       <code id="curl"></code>
+      <div id="logs"></div>
     </div>
-
   </main>
 
   <script src="./main2.js"></script>
