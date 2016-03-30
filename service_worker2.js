@@ -22,7 +22,7 @@ self.addEventListener('push', function(event) {
   // }
   // why is this event?
   event.waitUntil(
-    fetch('http://localhost:8978/test_web_worker/serviceworker_self_methods.jpg').then(function (res) {
+    fetch('https://terrylee7788.github.io/serviceworker_self_methods.jpg').then(function (res) {
       console.log(res);
       var icon = res.url;
       json.icon = icon;
