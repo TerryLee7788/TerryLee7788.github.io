@@ -238,6 +238,13 @@ function logMsg (message) {
   logs.innerHTML += '<p>' + message + '</p>';
 }
 
+function sendCustomizeMessage (msg) {
+  navigator.serviceWorker.ready.then(function (reg) {
+    console.log(reg);
+    reg.active.postMessage(msg);
+  });  
+}
+
 window.addEventListener('load', function () {
   console.log('done!!');
   checkSubScribeStatus();
@@ -253,6 +260,7 @@ window.addEventListener('load', function () {
   send_msg.addEventListener('click', function () {
     var value = document.querySelector('#my_message').value;
     console.log(value);
-    sendMessage(value);
+    // sendMessage(value);
+    sendCustomizeMessage(value);
   });
 })
