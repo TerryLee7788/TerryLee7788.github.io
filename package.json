@@ -1,0 +1,26 @@
+{
+  "name": "TerryLee7788.github.io",
+  "version": "1.0.0",
+  "description": "TerryLee.github.io\r ==================",
+  "main": "main2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TerryLee7788/TerryLee7788.github.io.git"
+  },
+  "author": "Terry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TerryLee7788/TerryLee7788.github.io/issues"
+  },
+  "homepage": "https://github.com/TerryLee7788/TerryLee7788.github.io",
+  "devDependencies": {
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "skrollr": "^0.6.26"
+  }
+}
