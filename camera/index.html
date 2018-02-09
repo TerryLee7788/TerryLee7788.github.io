@@ -77,18 +77,18 @@
             }
 
             if (window.File && window.FileReader && window.FormData) {
-                [].map.call(files, function (file) {
-                    file.addEventListener('change', function (e) {
-                        var file = e.target.files[0];
-                        if (file) {
-                            if (/^image\//i.test(file.type)) {
-                                readFile(file);
-                            } else {
-                                alert('Not a valid image!');
-                            }
-                        }
-                    });
-                });
+                // [].map.call(files, function (file) {
+                //     file.addEventListener('change', function (e) {
+                //         var file = e.target.files[0];
+                //         if (file) {
+                //             if (/^image\//i.test(file.type)) {
+                //                 readFile(file);
+                //             } else {
+                //                 alert('Not a valid image!');
+                //             }
+                //         }
+                //     });
+                // });
             } else {
                 alert('not support!');
             }
