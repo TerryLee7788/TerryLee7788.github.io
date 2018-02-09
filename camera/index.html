@@ -62,13 +62,16 @@
             }
 
             function processFile(dataURL, fileType) {
+                var maxWidth = 800;
+                var maxHeight = 800;
                 var image = new Image();
 
                 image.src = dataURL;
 
                 image.onload = function () {
-                    // result.empty();
+                    result.empty();
                     result.appendChild(this);
+
                     // sendFile(dataURL);
                 };
 
