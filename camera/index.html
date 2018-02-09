@@ -62,8 +62,6 @@
             }
 
             function processFile(dataURL, fileType) {
-                var maxWidth = 800;
-                var maxHeight = 800;
                 var image = new Image();
 
                 image.src = dataURL;
@@ -71,8 +69,6 @@
                 image.onload = function () {
                     result.empty();
                     result.appendChild(this);
-
-                    // sendFile(dataURL);
                 };
 
                 image.onerror = function () {
@@ -80,38 +76,10 @@
                 };
             }
 
-            function sendFile(fileData) {
-                var formData = new FormData();
-
-                formData.append('imageData', fileData);
-
-                console.log('formData: ', formData);
-
-                // $.ajax({
-                //     type: 'POST',
-                //     url: '/your/upload/url',
-                //     data: formData,
-                //     contentType: false,
-                //     processData: false,
-                //     success: function (data) {
-                //         if (data.success) {
-                //             alert('Your file was successfully uploaded!');
-                //         } else {
-                //             alert('There was an error uploading your file!');
-                //         }
-                //     },
-                //     error: function (data) {
-                //         alert('There was an error uploading your file!');
-                //     }
-                // });
-            }
-
             if (window.File && window.FileReader && window.FormData) {
                 [].map.call(files, function (file) {
                     file.addEventListener('change', function (e) {
-                        console.log(e);
                         var file = e.target.files[0];
-
                         if (file) {
                             if (/^image\//i.test(file.type)) {
                                 readFile(file);
