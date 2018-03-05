@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Card Number Test</title>
+</head>
+
+<body>
+    <input type="tel" name="cardnumber" placeholder="卡號">
+    <div id="result"></div>
+    <script>
+        (function () {
+            var cardnumber = document.querySelector('[name="cardnumber"]'),
+
+                /*
+                credit card regexp
+                    var creditCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|
+                                        5[1-5][0-9]{14}|
+                                        6(?:011|5[0-9][0-9])[0-9]{12}|
+                                        3[47][0-9]{13}|
+                                        3(?:0[0-5]|[68][0-9])[0-9]{11}|
+                                        (?:2131|1800|35\d{3})\d{11})$/;
+                 */
+
+                ValidateCreditCardNumber = function (e) {
+
+                    var ccNum = this.value.replace(/[^0-9]/g, ''),
+
+                        /*
+                        amexpRegEx      = /^(?:3[47][0-9]{13})$/,
+                        visaRegEx       = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/,
+                        mastercardRegEx = /^(?:5[1-5][0-9]{14})$/,
+                        discovRegEx     = /^(?:6(?:011|5[0-9]{2})[0-9]{12})$/,
+                        dinersclub      = /^(?:3(?:36|38|[0-5]{2})[0-9]{13})$/,
+                        jcbRegEx        = /^(?:2131|1800|35[0-9]{3})[0-9]$/,
+                        */
+
+                        amexpRegEx      = /^(?:3[47])[0-9]{0,13}$/,
+                        visaRegEx       = /^(?:4)[0-9]*$/,
+                        mastercardRegEx = /^(?:5[1-5])[0-9]*/,
+                        discovRegEx     = /^(?:6(?:011|5{2}))[0-9]*/,
+                        dinersclub      = /^(?:3(?:36|38|[0-5]{2}))[0-9]*/,
+                        jcbRegEx        = /^(?:2131|1800|35[0-9]{3})[0-9]*/,
+
+                        cvv = /^[0-9]{3,4}$/,
+
+                        separate = /(.{4})/g,
+
+                        isValid = true,
+                        replace_val = '$1 ',
+                        max_length = 16,
+                        type;
+
+                    if (visaRegEx.test(ccNum)) {
+                        type = 'visa';
+                    } else if (mastercardRegEx.test(ccNum)) {
+                        type = 'master';
+                    } else if (amexpRegEx.test(ccNum)) {
+                        type = 'ae';
+                    } else if (discovRegEx.test(ccNum)) {
+                        type = 'discover';
+                    } else if (jcbRegEx.test(ccNum)) {
+                        type = 'jcb';
+                    } else if (dinersclub.test(ccNum)) {
+                        type = 'dinersclub';
+                    } else {
+                        isValid = false;
+                    }
+
+                    if (/(ae|discover)/i.test(type) ||
+                        type === 'jcb' && /^(?:2131|1800)/.test(this.value)) {
+                        max_length = 15;
+                        separate = /(.{4})(.{0,6})(.{0,5})/g;
+                        replace_val = '$1 $2 $3';
+                    }
+
+                    if (this.value.length >= max_length) {
+                        ccNum = ccNum.slice(0, max_length);
+                    }
+
+                    this.value = ccNum.replace(separate, replace_val).replace(/\s+$/gi, '');
+
+                    if (isValid) {
+                        document.querySelector('#result').innerText = 'Card Type: ' + type;
+                    } else {
+                        document.querySelector('#result').innerText = 'Please provide a valid Credit Card number!';
+                    }
+                };
+
+            cardnumber.addEventListener('input', ValidateCreditCardNumber);
+
+        })();
+    </script>
+</body>
+
+</html>
