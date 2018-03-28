@@ -11,10 +11,6 @@
     };
     firebase.initializeApp(config);
 
-})();
-
-(function () {
-
     // [START get_messaging_object]
     // Retrieve Firebase Messaging object.
     const messaging = firebase.messaging();
