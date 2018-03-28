@@ -1,5 +1,3 @@
-(function () {
-
     // [START get_messaging_object]
     // Retrieve Firebase Messaging object.
     const messaging = firebase.messaging();
@@ -171,5 +169,3 @@
         showHideDiv(permissionDivId, true);
     }
     resetUI();
-
-})();
