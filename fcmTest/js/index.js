@@ -4,7 +4,7 @@ const messaging = firebase.messaging();
 // [END get_messaging_object]
 // [START set_public_vapid_key]
 // Add the public key generated from the console here.
-messaging.usePublicVapidKey('BG9MbOLtkB0cSkiI97w9HdIKwTaRINzAYabUt4fLSYVisU_5lHKmDtaAhEytOJE2NfwDbywaboq3YxP2lrvorSY');
+// messaging.usePublicVapidKey('BG9MbOLtkB0cSkiI97w9HdIKwTaRINzAYabUt4fLSYVisU_5lHKmDtaAhEytOJE2NfwDbywaboq3YxP2lrvorSY');
 // [END set_public_vapid_key]
 // IDs of divs that display Instance ID token UI or request permission UI.
 const tokenDivId = 'token_div';
