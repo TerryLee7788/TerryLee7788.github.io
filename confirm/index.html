@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>confirm</title>
+</head>
+<body>
+    
+    <button class="js-click">
+        click me!!
+    </button>
+
+    <script>
+        (function () {
+            var btn = document.querySelector('.js-click');
+
+            btn.addEventListener('click', function () {
+
+                confirm('好像只能傳訊息@@');
+
+            });
+        })();
+
+    </script>
+
+</body>
+</html>
