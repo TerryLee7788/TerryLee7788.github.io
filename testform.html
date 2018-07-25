@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test form</title>
+</head>
+<body>
+  <form action="https://tw.yahoo.com/" id="form">
+    <button>go submit</button>
+  </form>
+    <script>
+        (function () {
+
+            var form = document.querySelector('#form');
+
+            function goAnotherPage (e) {
+
+                window.location.href = 'https://www.google.com';
+                e.preventDefault();
+
+            }
+
+            form.addEventListener('submit', function (e) {
+
+                // e.preventDefault();
+                goAnotherPage.call(this, e);
+
+                setTimeout(function () {
+
+                    alert(123);
+                    window.location.reload();
+
+                }, 100);
+
+            });
+
+        })();
+    </script>
+</body>
+</html>
