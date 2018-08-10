@@ -1,4 +1,4 @@
-var swipe = function (elem) {
+const swipe = function (elem) {
 
     let start,
         end;
@@ -40,7 +40,7 @@ var swipe = function (elem) {
 
         }
 
-        alert('nothing.');
+        return alert('nothing.');
 
     }
 
