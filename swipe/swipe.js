@@ -65,5 +65,11 @@ var swipe = function (elem) {
 
     });
 
+    elem.addEventListener('touchmove', function (event) {
+
+        event.preventDefault();
+
+    }, false);
+
 };
 
