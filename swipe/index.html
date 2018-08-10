@@ -17,6 +17,10 @@
     <script src="./swipe.js"></script>
     <script>
         swipe(document.querySelector('.content'));
+
+        document.ontouchmove = function (event){
+            event.preventDefault();
+        }
     </script>
 </body>
 </html>
