@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Native Scroll To</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .content {
+            height: 200vh;
+            position: relative;
+        }
+
+        .btn {
+            width: 30px;
+            height: 30px;
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            background-color: #999;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .block {
+            height: 30px;
+            width: 100%;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .pos1 {
+            position: absolute;
+            top: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        
+        <!-- <div class="block pos1"></div> -->
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block yellow"></div>
+
+        <div class="btn js-top"></div>
+    </div>
+
+    <script src="./scroll.js"></script>
+</body>
+</html>
