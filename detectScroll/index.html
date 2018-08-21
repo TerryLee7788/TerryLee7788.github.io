@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detect scroll</title>
+</head>
+<script>
+    // method 1
+    function findScrollDirectionOtherBrowsers (event) {
+
+        var delta;
+        if (event.wheelDelta){
+
+            delta = event.wheelDelta;
+
+        }
+        else {
+
+            delta = -1 * event.deltaY;
+
+        }
+        if (delta < 0){
+
+            console.log('DOWN');
+
+        }
+        else if (delta > 0){
+
+            console.log('UP');
+
+        }
+
+    }
+
+    document.body.addEventListener('wheel', findScrollDirectionOtherBrowsers);
+
+    // method 2
+    var position = $(window).scrollTop();
+
+    $(window).scroll(function () {
+
+        var scroll = $(window).scrollTop();
+
+        if (scroll > position) {
+
+            console.log('moving DOWN the page');
+
+        }
+        else {
+
+            console.log('moving UP the page');
+
+        }
+
+        position = scroll;
+
+    });
+</script>
+<body>
+
+</body>
+</html>
