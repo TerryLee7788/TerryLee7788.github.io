@@ -17,7 +17,18 @@
   },
   "homepage": "https://github.com/TerryLee7788/TerryLee7788.github.io",
   "devDependencies": {
-    "webpack": "^1.13.3"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "mini-css-extract-plugin": "^0.4.3",
+    "node-sass": "^4.9.3",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.1",
+    "webpack-cli": "^3.1.1"
   },
   "dependencies": {
     "angular": "^1.5.8",
