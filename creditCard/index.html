@@ -13,35 +13,27 @@
         (function () {
             var cardnumber = document.querySelector('[name="cardnumber"]'),
 
-                /*
-                credit card regexp
-                    var creditCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|
-                                        5[1-5][0-9]{14}|
-                                        6(?:011|5[0-9][0-9])[0-9]{12}|
-                                        3[47][0-9]{13}|
-                                        3(?:0[0-5]|[68][0-9])[0-9]{11}|
-                                        (?:2131|1800|35\d{3})\d{11})$/;
+                /***
+                 * IIN Reference:
+                 *  https://en.wikipedia.org/wiki/Payment_card_number
+                 *
+                 * Some regexp Reference:
+                 *  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-capturing-parentheses
+                 *
                  */
 
                 ValidateCreditCardNumber = function (e) {
 
                     var ccNum = this.value.replace(/[^0-9]/g, ''),
 
-                        /*
-                        amexpRegEx      = /^(?:3[47][0-9]{13})$/,
-                        visaRegEx       = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/,
-                        mastercardRegEx = /^(?:5[1-5][0-9]{14})$/,
-                        discovRegEx     = /^(?:6(?:011|5[0-9]{2})[0-9]{12})$/,
-                        dinersclub      = /^(?:3(?:36|38|[0-5]{2})[0-9]{13})$/,
-                        jcbRegEx        = /^(?:2131|1800|35[0-9]{3})[0-9]$/,
-                        */
-
-                        amexpRegEx      = /^(?:3[47])[0-9]*$/,
-                        visaRegEx       = /^(?:4)[0-9]*$/,
-                        mastercardRegEx = /^(?:5[1-5])[0-9]*/,
-                        discovRegEx     = /^(?:6(?:011|5{2}))[0-9]*/,
-                        dinersclub      = /^(?:3(?:36|38|[0-5]{2}))[0-9]*/,
-                        jcbRegEx        = /^(?:2131|1800|35[0-9]{3})[0-9]*/,
+                        amexpRegEx        = /^(?:3[47])[0-9]*$/,
+                        visaRegEx         = /^(?:4)[0-9]*$/,
+                        mastercardRegEx   = /^(?:5[1-5]|2[2-7]{1}2[0-9]{1}[0-9]{2})[0-9]*/,
+                        discovRegEx       = /^(?:6(?:011|5{2}))[0-9]*/,
+                        dinersclub        = /^(?:36|3[89]|3[0-5]{2})[0-9]*/,
+                        dinersclubEnroute = /^(?:2014|2149)[0-9]*/,
+                        jcbRegEx          = /^(?:2131|1800|35[0-9]{3})[0-9]*/,
+                        unionPay          = /^(?:62)[0-9]*/,
 
                         cvv = /^[0-9]{3,4}$/,
 
@@ -53,19 +45,49 @@
                         type;
 
                     if (visaRegEx.test(ccNum)) {
+
                         type = 'visa';
-                    } else if (mastercardRegEx.test(ccNum)) {
+
+                    }
+                    else if (mastercardRegEx.test(ccNum)) {
+
                         type = 'master';
-                    } else if (amexpRegEx.test(ccNum)) {
+
+                    }
+                    else if (amexpRegEx.test(ccNum)) {
+
                         type = 'ae';
-                    } else if (discovRegEx.test(ccNum)) {
+
+                    }
+                    else if (discovRegEx.test(ccNum)) {
+
                         type = 'discover';
-                    } else if (jcbRegEx.test(ccNum)) {
+
+                    }
+                    else if (jcbRegEx.test(ccNum)) {
+
                         type = 'jcb';
-                    } else if (dinersclub.test(ccNum)) {
+
+                    }
+                    else if (dinersclub.test(ccNum)) {
+
                         type = 'dinersclub';
-                    } else {
+
+                    }
+                    else if (dinersclubEnroute.test(ccNum)) {
+
+                        type = 'dinersclubEnroute';
+
+                    }
+                    else if (unionPay.test(ccNum)) {
+
+                        type = 'China UnionPay';
+
+                    }
+                    else {
+
                         isValid = false;
+
                     }
 
                     if (/(ae|discover)/i.test(type) ||
@@ -82,9 +104,14 @@
                     this.value = ccNum.replace(separate, replace_val).replace(/\s+$/gi, '');
 
                     if (isValid) {
+
                         document.querySelector('#result').innerText = 'Card Type: ' + type;
-                    } else {
+
+                    }
+                    else {
+
                         document.querySelector('#result').innerText = 'Please provide a valid Credit Card number!';
+
                     }
                 };
 
