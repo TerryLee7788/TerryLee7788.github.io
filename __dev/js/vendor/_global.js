@@ -1,0 +1,1 @@
+require('../../scss/vendor/_global.scss');

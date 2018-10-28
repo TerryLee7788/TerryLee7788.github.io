@@ -1,13 +1,16 @@
 const path = require('path'),
-    MiniCssExtractPlugin = require("mini-css-extract-plugin");
+    MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+    JS_DEV_PATH = `${__dirname}/__dev/js`;
 
 module.exports = {
     entry: {
-        index: path.resolve(__dirname, './js/index.js'),
+        global: path.resolve(JS_DEV_PATH, './vendor/_global.js'),
+        index: path.resolve(JS_DEV_PATH, './pages/_index.js'),
+        slider: path.resolve(JS_DEV_PATH, './pages/_slider.js'),
     },
     output: {
-        path: path.resolve(__dirname, 'public'),
-        filename: '[name].js',
+        path: path.resolve(__dirname, './public'),
+        filename: './js/[name].js',
     },
     module: {
         rules: [
@@ -27,7 +30,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "[name].css",
+            filename: "./css/[name].css",
         }),
     ],
     mode: 'development',
