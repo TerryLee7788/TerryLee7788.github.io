@@ -157,7 +157,7 @@ const slider = (opts) => {
                 // 關閉動畫 + 調到應有的位置
                 setTimeout(() => {
 
-                    CONTAINER.style.transitionDuration = 'unset';
+                    CONTAINER.style.transitionDuration = '0s';
                     CONTAINER.style.transform = `translateX(${ADJEST_COUNT * -WIDTH}px)`;
                     SETTINGS.CURRENT_POINT = ADJEST_COUNT;
                     SETTINGS.LOCK_ANIMATE = false;
