@@ -8,8 +8,7 @@
     "icons": [
         {
             "src": "images/head-icon.png",
-            "sizes": "512x512",
-            "type": "image/png"
+            "sizes": "48x48"
         }
     ],
     "gcm_sender_id": "434620777437",
