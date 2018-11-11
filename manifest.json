@@ -1,8 +1,6 @@
-
-
 {
     "name": "TerryLee",
-    "short_name": "TL",
+    "short_name": "Terryio",
     "start_url": "/index.html",
     "display": "minimal-ui",
     "icons": [
