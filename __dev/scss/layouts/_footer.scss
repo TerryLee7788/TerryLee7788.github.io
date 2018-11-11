@@ -1,0 +1,11 @@
+$footer-bg-color: #535353;
+$footer-text-color: #fff;
+
+footer {
+    background-color: $footer-bg-color;
+    color: $footer-text-color;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

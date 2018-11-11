@@ -1,5 +1,60 @@
 @import '../utilities/variables';
+@import '../utilities/colorVariables';
+@import '../layouts/_header.scss';
+@import '../layouts/footer.scss';
+@import '../third-party/normalize.css';
+@import '../third-party/font-icon.css';
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+    transition: color .2s linear;
+}
+
+a:hover {
+    color: $link-hover-color;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.right {
+    float: right;
+}
 
 body {
     font-size: $font-size;
+    font-family: $font-families;
+}
+
+section {
+    padding: $basic-spacing * 2 1rem
+}
+
+footer {
+    padding: $basic-spacing $basic-spacing * 2;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: $desktop-width) {
+    .main {
+        flex-direction: row;
+    }
 }

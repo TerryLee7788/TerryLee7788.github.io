@@ -26,6 +26,12 @@ module.exports = {
                     'sass-loader'
                 ]
             },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2?)$/,
+                use: {
+                    loader: 'file-loader?publicPath=../&name=[hash].[ext]'
+                }
+            }
         ],
     },
     plugins: [

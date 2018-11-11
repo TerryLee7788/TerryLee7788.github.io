@@ -1,0 +1,58 @@
+@import '../utilities/_variables.scss';
+@import '../utilities/colorVariables';
+
+.header {
+    border: 1px solid $light-gray;
+    .logo {
+        padding: $basic-spacing * 2;
+        text-align: center;
+        > * {
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .text {
+            margin-left: $basic-spacing;
+            font-size: 20px;
+        }
+    }
+}
+
+.nav-bar {
+    ul {
+        display: none;
+        line-height: 1.8rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid $light-gray;
+        a {
+            display: block;
+            padding: 0 $basic-spacing * 2;
+            font-size: .9rem;
+        }
+        &.active {
+            display: block;
+        }
+    }
+}
+
+@media (min-width: $desktop-width) {
+    .header {
+        .logo {
+            text-align: left;
+            .icon-menu {
+                display: none;
+            }
+        }
+    }
+    .nav-bar {
+        height: calc(100vh - 55px);
+        ul {
+            display: block;
+            border-bottom: 0;
+            a {
+                padding-top: $basic-spacing;
+                padding-bottom: $basic-spacing;
+                font-size: 1rem;
+            }
+        }
+    }
+}
