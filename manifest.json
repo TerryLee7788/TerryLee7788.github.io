@@ -2,7 +2,7 @@
     "name": "TerryLee",
     "short_name": "Terryio",
     "start_url": "/index.html",
-    "display": "minimal-ui",
+    "display": "fullscreen",
     "icons": [
         {
             "src": "images/icons/icon-72x72.png",
