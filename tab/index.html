@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>-webkit-tap-highlight test</title>
+    <style>
+        .mask {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="mask"></div>
+    <script>
+        document.querySelector('.mask').addEventListener('click', function () {
+
+            this.classList.add('hide');
+
+        });
+    </script>
+</body>
+</html>
