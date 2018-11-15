@@ -3,11 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>test input at ios mobile phone</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 100%;
+        }
+
+        body {
+            font-family: "Helvetica Neue","微軟正黑體", "微软雅黑","Microsoft JhengHei", "Arial";
+            font-size: 16px;
+        }
+
+        input,
+        select {
+            -webkit-appearance: none;
+            -moz-appearance:    none;
+            appearance:         none;
+            outline: none;
+            border: 1px solid #999;
+            border-radius: 4px;
+            padding: 8px 16px;
+            height: 36px;
+            font-size: .875rem;
+        }
+        select {
+            padding-right: 24px;
+        }
+
+        .cf:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .input-fields * {
+            float: left;
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
 
-    <div>
+    <div class="input-fields">
         <input type="date" class="js-change">
+        <input type="text" placeholder="text">
+        <input type="password" placeholder="password">
+        <input type="search" placeholder="search">
+        <select name="name">
+            <option value="">請選擇</option>
+            <option value="">1</option>
+            <option value="">2</option>
+        </select>
     </div>
 
     <script>
