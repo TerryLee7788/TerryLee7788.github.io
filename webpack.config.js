@@ -7,6 +7,7 @@ module.exports = {
         global: path.resolve(JS_DEV_PATH, './vendor/_global.js'),
         index: path.resolve(JS_DEV_PATH, './pages/_index.js'),
         slider: path.resolve(JS_DEV_PATH, './pages/_slider.js'),
+        scrollBottom: path.resolve(JS_DEV_PATH, './pages/_scrollBottom.js'),
     },
     output: {
         path: path.resolve(__dirname, './public'),
