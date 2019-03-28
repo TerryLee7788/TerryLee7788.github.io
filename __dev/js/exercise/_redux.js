@@ -2,17 +2,20 @@ const redux = require('redux');
 const createStore = redux.createStore;
 
 const actionTypes = {
-    greeting: 'GREETING'
+    greeting: 'GREETING',
+    add: 'ADD',
 };
 
 // init state
 const initState = {
-    name: 'terry'
+    name: 'terry',
+    count: 0
 };
 
 // reducers config 設置
 const reducersConfig = {
     [actionTypes.greeting]: (state, action) => ({ ...state, name: `${state.name}: ${action.payload}` }),
+    [actionTypes.add]: (state, action) => ({ ...state, count: state.count + action.payload })
 };
 
 // reducers
@@ -54,6 +57,16 @@ terryStore.dispatch({
 terryStore.dispatch({
     type: actionTypes.greeting,
     payload: 'omg'
+});
+
+terryStore.dispatch({
+    type: actionTypes.add,
+    payload: 5
+});
+
+terryStore.dispatch({
+    type: actionTypes.add,
+    payload: 7
 });
 
 console.log('[end]: ', terryStore.getState());
