@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pageVisibility</title>
+</head>
+<body>
+
+    <a href="https://www.google.com" target="_blank">假設開新分頁去儲值~</a>
+    <p><i>可以寫個 localStorage 當 flag，去觸發 API 更新帳戶儲值金顯示</i></p>
+    <a href="https://caniuse.com/#search=visibilitychange" target="_blank">瀏覽器支援度</a>
+    <script>
+
+        document.addEventListener('visibilitychange', function () {
+
+            if (document.visibilityState === 'hidden') {
+
+                console.log('QQ~ 你離開我了!!');
+
+            }
+
+            if (document.visibilityState === 'visible') {
+
+                alert('觸發刷新儲值金!!');
+
+            }
+        });
+
+    </script>
+</body>
+</html>
