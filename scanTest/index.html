@@ -28,13 +28,13 @@
             })
             .catch(function (e) {
                 console.error(e);
-                document.querySelector('.error').textContent(e);
+                document.querySelector('.error').textContent = e;
             });
 
       }
       catch (error) {
 
-        document.querySelector('.error').textContent(error);
+        document.querySelector('.error').textContent = error;
 
       }
     </script>
