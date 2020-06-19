@@ -58,11 +58,19 @@
             <option value="">2</option>
         </select>
     </div>
+    <div>
+        <h3>numeric</h3>
+        <input type="numeric">
+    </div>
+    <div>
+        <h3>Use the `pattern` Attribute on a Text Input</h3>
+        <input pattern="[0-9]*" type="text">
+    </div>
 
     <script>
-        
+
         (function (opts) {
-            
+
             var input = document.querySelector(opts.input);
 
             input.addEventListener('change', function () {
@@ -76,6 +84,6 @@
         });
 
     </script>
-    
+
 </body>
 </html>
