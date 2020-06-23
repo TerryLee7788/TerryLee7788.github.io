@@ -10,10 +10,87 @@
         height: 200vh;
         background-color: red;
     }
+    .wrap {
+        height: 200px;
+        overflow: auto;
+    }
+    .scroll {
+        height: 100vh;
+        border: 1px solid;
+    }
+    .modal-content {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 16px;
+        font-variant: tabular-nums;
+        line-height: 1.5715;
+        list-style: none;
+        -webkit-font-feature-settings: 'tnum';
+        font-feature-settings: 'tnum';
+        position: relative;
+        top: 100px;
+        width: auto;
+        margin: 0 auto;
+        padding-bottom: 24px;
+        pointer-events: none;
+        background-color: #fff;
+        margin: 0 16px;
+        height: 50vh;
+        overflow: auto;
+        padding: 16px;
+    }
+    .modal-mask {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.45);
+        filter: alpha(opacity=50);
+    }
+    .modal-wrap {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        overflow: auto;
+        outline: 0;
+        /* -webkit-overflow-scrolling: touch; */
+    }
+    .test {
+        height: 800px;
+        background-color: green;
+    }
+    body {
+        /* -webkit-overflow-scrolling: touch; */
+    }
 </style>
 <body>
     <div class="terry">
-        test
+        <button id="btn">click</button>
+        <div class="modal">
+            <div class="modal-mask"></div>
+            <div class="modal-wrap">
+                <div class="modal-content">
+                    <div class="test">
+                        55555
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+<script>
+    var btn = document.querySelector('#btn')
+    btn.addEventListener('click', () => {
+        console.log(123);
+    })
+</script>
 </html>

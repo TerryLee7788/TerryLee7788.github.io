@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>test input at ios mobile phone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <style>
         * {
             box-sizing: border-box;
@@ -37,6 +38,11 @@
             content: '';
             display: block;
             clear: both;
+        }
+
+        .input-fields {
+            min-height: 200vh;
+            padding-top: 600px;
         }
 
         .input-fields * {
@@ -82,6 +88,18 @@
         })({
             input: '.js-change'
         });
+
+        var inputs = document.querySelectorAll('input');
+        var catchCurrentY = 0;
+
+        [].map.call(inputs, (input) => {
+            input.addEventListener('click', () => {
+                catchCurrentY = window.scrollY
+            })
+            input.addEventListener('blur', () => {
+                window.scrollTo(0, catchCurrentY)
+            })
+        })
 
     </script>
 
