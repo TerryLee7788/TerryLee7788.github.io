@@ -3,6 +3,8 @@
     "short_name": "Terryio",
     "start_url": "/index.html",
     "display": "fullscreen",
+    "background_color": "#3367D6",
+    "theme_color": "#ff0000",
     "icons": [
         {
             "src": "images/icons/icon-72x72.png",
