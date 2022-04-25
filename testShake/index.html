@@ -15,6 +15,8 @@
 <script>
 var lunch = new Array("快速便當", "燒臘", "小寶", "麥當勞", "林東方", "超商");
 var lastX= 0;
+var speed = 50;
+var lastY=0;
 function handleMotionEvent(event) {
     var acceleration = event.accelerationIncludingGravity; // 获取设备的加速度
     x = acceleration.x; // 获取加速度的x轴，用于计算水平水平加速度
