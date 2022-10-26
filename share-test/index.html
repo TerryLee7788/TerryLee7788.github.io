@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>share test</title>
+</head>
+<body>
+    <button id="share">share</button>
+    <script>
+        var shareBtn = document.querySelector('#share')
+        shareBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'test share',
+                    text: 'test123',
+                    url: 'https://www.google.com.tw'
+                })
+            } else {
+                alert('navigator share gg~')
+            }
+        })
+    </script>
+</body>
+</html>
