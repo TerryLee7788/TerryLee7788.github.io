@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shake test</title>
+    <script src="./shake.js"></script>
+</head>
+<body>
+    <script>
+        var myShakeEvent = new Shake({
+            threshold: 15, // optional shake strength threshold
+            timeout: 1000 // optional, determines the frequency of event generation
+        });
+        myShakeEvent.start();
+        window.addEventListener('shake', function () {
+            alert('shake!!')
+        }, false);
+    </script>
+</body>
+</html>
